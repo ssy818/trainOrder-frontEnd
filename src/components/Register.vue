@@ -60,7 +60,7 @@
           registerForm: {
             user_phone: '',
             password: '',
-            confirm_pwd: '',
+            confirm_password: '',
             user_name: '',
             real_name: '',
             person_id: '',
@@ -88,9 +88,6 @@
             ],
             person_id: [
               { required: true, message: "请输入身份证号", trigger: 'blur'}
-            ],
-            email: [
-              { required: false, message: "请输入邮箱", trigger: 'blur'}
             ]
           }
         }

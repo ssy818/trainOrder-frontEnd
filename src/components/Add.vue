@@ -7,19 +7,22 @@
     </el-breadcrumb>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <el-form :inline="true" class="form-inline">
+        <el-form :inline="true" :model="findForm" class="form-inline">
           <el-form-item label="姓名" label-width="50px" prop="id">
-            <el-input placeholder="请输入内容" style="width: 300px">
+            <el-input v-model="findForm.real_name" placeholder="请输入内容" style="width: 300px">
               <i slot="prefix" class="el-input__icon el-icon-search"></i>
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" style="margin-left: 20px">查询</el-button>
+            <el-button type="primary" style="margin-left: 20px" @click="findPassenger">查询</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="info" style="margin-left: 10px" @click="cancelFind">取消</el-button>
           </el-form-item>
         </el-form>
       </div>
       <div class="text item">
-        <el-table :data="passengerList" border highlight-current-row style="width: 100%">
+        <el-table :data="passengerList" border style="width: 100%">
           <el-table-column type="index" label="序号" width="100px">
           </el-table-column>
           <el-table-column label="真实姓名" prop="real_name">
@@ -64,6 +67,9 @@
         return {
           passengerList: [],
           addDialogVisible: false,
+          findForm: {
+            real_name: ''
+          },
           deleteForm: {
             user_phone: JSON.parse(window.sessionStorage.getItem("user"))["user_phone"],
             person_id: ''
@@ -95,13 +101,25 @@
           const user_phone = JSON.parse(window.sessionStorage.getItem("user"))["user_phone"];
           const {data:res} = await this.$http.get("findPassenger",{
             params:{
-              user_phone:user_phone,
+              user_phone:user_phone
             }
-          })
+          });
           if(res.status !== 200) return this.$message.error("无乘客");
           else {
             this.passengerList = res.data;
           }
+        },
+        findPassenger() {
+          for (let i = 0; i < this.passengerList.length; i++) {
+            if (this.passengerList[i].real_name !== this.findForm.real_name) {
+              this.passengerList.splice(i,1);
+              i--;
+            }
+          }
+        },
+        cancelFind() {
+          this.findForm.real_name = '';
+          this.getPassengerList();
         },
         async deletePassenger(row) {
           const confirmResult = await this.$confirm("此操作将删除该乘客，是否继续？","提示",{

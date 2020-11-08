@@ -2,14 +2,14 @@
   <div class="login_container">
     <div class="login_box">
       <div class="avatar_box">
-        <img src="../assets/logo.png" alt="">
+        <img src="../assets/thomas.png" alt="">
       </div>
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="80px" class="login_form">
         <el-form-item label="手机号" style="width:300px;" prop="user_phone">
           <el-input v-model="loginForm.user_phone" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item label="密码" style="width:300px;" prop="password">
-          <el-input v-model="loginForm.password" type="password"></el-input>
+          <el-input v-model="loginForm.password" type="password" prefix-icon="el-icon-lock"></el-input>
         </el-form-item>
         <el-form-item>
           <el-row class="bottom">
@@ -63,7 +63,7 @@
 
 <style lang="less" scoped>
   .login_container {
-    background-color: bisque;
+    background-color: darkcyan;
     height: 100%;
   }
   .login_box {

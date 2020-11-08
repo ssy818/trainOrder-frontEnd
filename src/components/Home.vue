@@ -2,7 +2,7 @@
   <el-container class="home_container">
     <el-header>
       <div>
-        <img src="" alt="">
+        <img src="../assets/train.png" alt="" height="80" width="70">
         <span>欢迎使用23333火车订票系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -13,7 +13,7 @@
         <el-menu
           :default-active="$route.path"
           class="el-menu-vertical-demo"
-          background-color="#545c64"
+          background-color="#333744"
           text-color="#fff"
           active-text-color="#409EFF"
           unique-opened
@@ -51,7 +51,7 @@
               <span slot="title">个人信息</span>
             </template>
             <el-menu-item index="/info-check">查看信息</el-menu-item>
-            <el-menu-item index="/info-fix">修改信息</el-menu-item>
+            <el-menu-item index="/info-fix">修改密码</el-menu-item>
             <el-menu-item index="/passenger">添加乘客</el-menu-item>
           </el-submenu>
         </el-menu>
@@ -88,7 +88,7 @@
     height: 100%;
   }
   .el-header {
-    background-color: dimgray;
+    background-color: #373d41;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -103,16 +103,16 @@
     }
   }
   .el-aside {
-    background-color: royalblue;
+    background-color: #333744;
     .el-menu {
       border-right: none;
     }
   }
   .el-main {
-    background-color: floralwhite;
+    background-color: #eaedf1;
   }
   .toggle-button {
-    background-color: navy;
+    background-color: #4a5064;
     font-size: 10px;
     line-height: 24px;
     color: #dddddd;
